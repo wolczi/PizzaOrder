@@ -1,0 +1,121 @@
+﻿<Window x:Class="PizzaOrder.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PizzaOrder"
+        mc:Ignorable="d"
+        Title="ZamowPizze" MinHeight="650" MinWidth="750"  MaxHeight="800" MaxWidth="900"  Height="650" Width="750">
+    <Grid Background="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}">
+
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel VerticalAlignment="Center" Grid.Row ="0" Grid.Column="0" HorizontalAlignment="Center">
+            <TextBox  Name="consistOf" TextWrapping="Wrap" Text="Wybierz rodzaj pizzy:" HorizontalContentAlignment="Center" BorderThickness="0" Margin="0,0,0,10" />
+            <ComboBox VerticalContentAlignment="Center" HorizontalContentAlignment="Center"  BorderThickness="0">
+                <ComboBoxItem Tag="Havana" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Selected="SelectPizza">Havana</ComboBoxItem>
+                <ComboBoxItem Tag="Vege" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Selected="SelectPizza">Vegetariana</ComboBoxItem>
+                <ComboBoxItem Tag="NY" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Selected="SelectPizza">NY Style</ComboBoxItem>
+                <ComboBoxItem Tag="Serio" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Selected="SelectPizza">Serio</ComboBoxItem>
+            </ComboBox>
+        </StackPanel>
+
+        <StackPanel Grid.Row ="1" Grid.Column="0" VerticalAlignment="Center">
+            <Label Content="Wybierz rozmiar:"  HorizontalAlignment="Center" Margin="0,0,0,5"/>
+            <WrapPanel  HorizontalAlignment="Center">
+                <RadioButton Name="sizeButtonS" Tag="S" Content="MAŁA" Margin="0,0,5,0" Checked="size_checked"/>
+                <Label Content="15 zł" Margin="0,0,0,0" />
+                <RadioButton Name="sizeButtonL" Tag="L" Content="ŚREDNIA" Margin="0,0,5,0" Checked="size_checked"/>
+                <Label Content="30 zł" Margin="0,0,0,0" />
+                <RadioButton Name="sizeButtonXL" Tag="XL" Content="DUŻA" Margin="0,0,5,0" Checked="size_checked"/>
+                <Label Content="45 zł" Margin="0,0,0,0" />
+            </WrapPanel>
+        </StackPanel>
+
+        <StackPanel Grid.Row ="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Label Content="Stopień ostrości:"  HorizontalAlignment="Center" />
+            <Slider Name ="slide_elem" Minimum="1" Value="2" Maximum="3" TickFrequency="1" TickPlacement="TopLeft" VerticalAlignment="Center" SmallChange="1" IsSnapToTickEnabled="True" IsMoveToPointEnabled="True" SelectionEnd="3" PreviewMouseUp="sharpness_changed"/>
+            <WrapPanel>
+                <Label Content="Słaby" />
+                <Label Content="Średni" />
+                <Label Content="Mocny" />
+            </WrapPanel>
+        </StackPanel>
+
+        <TextBox Name="Uwagi" Grid.Column="1" Grid.Row="2" TextWrapping="Wrap" Padding="5" Margin="0,14.588,15.268,16.124" BorderThickness="0.75" Text="brak uwag" HorizontalAlignment="Right" Width="341" MaxLength="200" />
+
+        <GroupBox Grid.Column="1" Grid.RowSpan="2" Header="Dodatki" Margin="10,0,10,10" BorderThickness="1"  >
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Label FontWeight="Bold">dodatkowy sos | 2,50</Label>
+                <WrapPanel>
+                    <CheckBox Tag ="group1" Content="ketchup" Margin="0,0,5,5" Checked="additionals_checked" Unchecked="additionals_unchecked"/>
+                    <CheckBox Tag ="group1" Content="majonez" Margin="0,0,5,5" Checked="additionals_checked" Unchecked="additionals_unchecked"/>
+                    <CheckBox Tag ="group1" Content="sos bbq" Margin="0,0,5,5" Checked="additionals_checked" Unchecked="additionals_unchecked"/>
+                    <CheckBox Tag ="group1" Content="sos czosnkowy" Margin="0,0,5,5" Checked="additionals_checked" Unchecked="additionals_unchecked"/>
+                </WrapPanel>
+                <Label FontWeight="Bold">dodatkowy składnik | 4,50</Label>
+                <WrapPanel>
+                    <CheckBox Tag ="group2" Content="cebula" Margin="0,0,5,5" Checked="additionals_checked" Unchecked="additionals_unchecked"/>
+                    <CheckBox Tag="group2" Content="ser" Margin="0,0,5,5" Checked="additionals_checked" Unchecked="additionals_unchecked"/>
+                    <CheckBox Tag="group2" Content="papryka" Margin="0,0,5,5" Checked="additionals_checked" Unchecked="additionals_unchecked"/>
+                    <CheckBox Tag="group2" Content="salami" Margin="0,0,5,5" Checked="additionals_checked" Unchecked="additionals_unchecked"/>
+                    <CheckBox Tag="group2" Content="kurczak" Margin="0,0,5,5" Checked="additionals_checked" Unchecked="additionals_unchecked"/>
+                    <CheckBox Tag="group2" Content="boczek" Margin="0,0,5,5" Checked="additionals_checked" Unchecked="additionals_unchecked"/>
+                    <CheckBox Tag="group2" Content="szynka" Margin="0,0,5,5" Checked="additionals_checked" Unchecked="additionals_unchecked"/>
+                    <CheckBox Tag="group2" Content="pieczarki" Margin="0,0,5,5" Checked="additionals_checked" Unchecked="additionals_unchecked"/>
+                    <CheckBox Tag="group2" Content="ogórek" Margin="0,0,5,5" Checked="additionals_checked" Unchecked="additionals_unchecked"/>
+                    <CheckBox Tag="group2" Content="pomidory" Margin="0,0,5,5" Checked="additionals_checked" Unchecked="additionals_unchecked"/>
+                    <CheckBox Tag="group2" Content="oliwki" Margin="0,0,5,5" Checked="additionals_checked" Unchecked="additionals_unchecked"/>
+                </WrapPanel>
+                <Label FontWeight="Bold">frytki | 10</Label>
+                <WrapPanel>
+                    <CheckBox Tag="group3" Content="frytki klasyczne" Margin="0,0,5,5" Checked="additionals_checked" Unchecked="additionals_unchecked"/>
+                    <CheckBox Tag="group3" Content="frytki domowe" Margin="0,0,5,5" Checked="additionals_checked" Unchecked="additionals_unchecked"/>
+                    <CheckBox Tag="group3" Content="frytki z batata" Margin="0,0,5,5"  Checked="additionals_checked" Unchecked="additionals_unchecked"/>
+                </WrapPanel>
+                <Label FontWeight="Bold">napoje | 5,50</Label>
+                <WrapPanel>
+                    <CheckBox Tag="group4" Content="cola" Margin="0,0,5,5" Checked="additionals_checked" Unchecked="additionals_unchecked"/>
+                    <CheckBox Tag="group4" Content="fanta" Margin="0,0,5,5"  Checked="additionals_checked" Unchecked="additionals_unchecked"/>
+                    <CheckBox Tag="group4" Content="sprite" Margin="0,0,5,5"  Checked="additionals_checked" Unchecked="additionals_unchecked"/>
+                    <CheckBox Tag="group4" Content="woda" Margin="0,0,5,5"  Checked="additionals_checked" Unchecked="additionals_unchecked"/>
+                    <CheckBox Tag="group4" Content="piwo" Margin="0,0,5,5"  Checked="additionals_checked" Unchecked="additionals_unchecked"/>
+                </WrapPanel>
+            </StackPanel>
+        </GroupBox>
+
+        <Label  Grid.ColumnSpan="2" Grid.Row="3" FontFamily="Comic Sans MS" FontStyle="Italic" BorderThickness="0.75" Margin="10" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" Padding="20,5,5,5" VerticalContentAlignment="Stretch" FontSize="15" HorizontalContentAlignment="Stretch">
+            <TextBlock Name="info_order" Grid.ColumnSpan="2" Grid.Row="3" TextWrapping="Wrap" Text="PODSUMOWANIE ZAMÓWIENIA" />
+
+        </Label>
+
+        <Button Name="confirm_button" Grid.ColumnSpan="2" Grid.Row="5" Background="#FFEEE7E7" IsEnabled="False" Click="order_click">
+            <WrapPanel>
+                <Image Source="pizza_PNG43993.png" Margin="10,20,0,24" />
+                <Label Name="confirm_order" Margin="3" VerticalAlignment="Center"></Label>
+            </WrapPanel>
+        </Button>
+
+        <Border Grid.Column="0" Grid.Row="0" BorderBrush="Black" 
+        BorderThickness="0.1,0.1,0,0.1" Background="{x:Null}" />
+        <Border Grid.Column="0" Grid.Row="1" BorderBrush="Black" 
+        BorderThickness="0.1,0,0,0.1" Background="{x:Null}" />
+        <Border Grid.Column="0" Grid.Row="2" BorderBrush="Black" 
+        BorderThickness="0.1,0,0,0" Background="{x:Null}" />
+        <Border Grid.Column="1" Grid.RowSpan="2" BorderBrush="Black" 
+        BorderThickness="0,0.1,0,0" Background="{x:Null}" />
+
+
+
+    </Grid>
+</Window>
